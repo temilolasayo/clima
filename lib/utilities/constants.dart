@@ -15,6 +15,15 @@ const kButtonTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
 );
 
-const kConditionTextStyle = TextStyle(
-  fontSize: 100.0,
+const kSmallTextStyle = TextStyle(
+  fontSize: 20.0,
+  fontFamily: 'Spartan MB',
 );
+
+const kConditionTextStyle = TextStyle(
+  fontSize: 150.0,
+);
+
+const kApiKeys = "d677d3a51079292e2f0af6c1a100d99e";
+
+const kOpenWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?";

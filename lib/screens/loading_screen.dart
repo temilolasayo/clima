@@ -1,30 +1,46 @@
+import 'package:clima/screens/location_screen.dart';
+import 'package:clima/services/weather.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../services/location.dart';
+
+Location currentLocation = Location();
+late double latitude;
+late double longitude;
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
 
   @override
-  _LoadingScreenState createState() => _LoadingScreenState();
+  LoadingScreenState createState() => LoadingScreenState();
 }
 
-void getLocation() async {
-  Location newLocation = Location();
-  await newLocation.getCurrentLocation();
-  print(newLocation.latitude);
-  print(newLocation.longitude);
-}
-
-class _LoadingScreenState extends State<LoadingScreen> {
+class LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    getLocation();
+    getData();
+  }
+
+  void getData() async {
+    var weatherData = await WeatherModel().getLocationWeather();
+
+    if (!mounted) return;
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LocationScreen(weatherData: weatherData),
+        ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      body: SpinKitDoubleBounce(
+        color: Colors.orange,
+        size: 50,
+      ),
+    );
   }
 }

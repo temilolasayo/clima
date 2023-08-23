@@ -1,4 +1,3 @@
-import 'package:clima/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class CityScreen extends StatefulWidget {
@@ -12,41 +11,42 @@ class _CityScreenState extends State<CityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/city_background.jpg'),
-            fit: BoxFit.cover,
-          ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: const Icon(
+          Icons.arrow_back,
+          color: Colors.black,
         ),
-        constraints: const BoxConstraints.expand(),
-        child: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.topLeft,
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    size: 50.0,
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+            child: TextField(
+              onChanged: (query) => {print(query)},
+              // controller: _searchController,
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.only(left: 15.0),
+                filled: true,
+                icon: Icon(
+                  Icons.location_city,
+                  color: Colors.black,
+                ),
+                border: UnderlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
                   ),
+                  borderSide: BorderSide.none,
                 ),
+                hintText: 'Enter city name...',
+                hintStyle: TextStyle(
+                    color: Color.fromRGBO(204, 204, 204, 1), fontSize: 20.0),
               ),
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                child: null,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Get Weather',
-                  style: kButtonTextStyle,
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
